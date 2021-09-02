@@ -21,11 +21,11 @@ jobs:
           Start-Process -Wait sdksetup.exe -ArgumentList "/q", "/norestart", "/features", "OptionId.WindowsDesktopSoftwareDevelopmentKit", "OptionId.NetFxSoftwareDevelopmentKit"
 
       - name: Run MSBuild
-        run: msbuild.exe ./libbulletc/libbulletc-Windows/libbulletc/libbulletc.vcxproj
+        run: msbuild.exe ./libbulletc/libbulletc-Windows/libbulletc/libbulletc.vcxproj /p:configuration=release /p:platform=x64
 
       - name: Upload native libbulletc
         uses: actions/upload-artifact@v2
         with:
-          name: NugetPackages
+          name: Engine Dll(x64)
           if-no-files-found: error
-          path: ./**/libbulletc.dll
+          path: ./libbulletc/libbulletc-Windows/libbulletc/Release/libbulletc.dll
