@@ -28,4 +28,4 @@ jobs:
         with:
           name: Engine Dll(x64)
           if-no-files-found: error
-          path: ./libbulletc/libbulletc-Windows/libbulletc/Release/libbulletc.dll
+          path: ./**/libbulletc.dll
