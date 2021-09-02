@@ -1,0 +1,25 @@
+name: develop
+on: 
+  push:
+    branches:
+      - feature/build_automation
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild
+
+      - name: Run MSBuild
+        run: msbuild.exe ./libbulletc/libbulletc-Windows/libbulletc/libbulletc.vcxproj
+
+      - name: Upload native libbulletc
+        uses: actions/upload-artifact@v2
+        with:
+          name: NugetPackages
+          if-no-files-found: error
+          path: ./**/libbulletc.dll
